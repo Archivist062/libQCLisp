@@ -1,0 +1,23 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "libQCLISP", "libQCLISP.csproj", "{AD937A05-FC26-47D5-9A89-7633117DBAAB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "qclisp", "qclisp\qclisp.csproj", "{7B2EC1A9-82BF-4511-9DEC-6AD86920F6B0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7B2EC1A9-82BF-4511-9DEC-6AD86920F6B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B2EC1A9-82BF-4511-9DEC-6AD86920F6B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7B2EC1A9-82BF-4511-9DEC-6AD86920F6B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7B2EC1A9-82BF-4511-9DEC-6AD86920F6B0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AD937A05-FC26-47D5-9A89-7633117DBAAB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD937A05-FC26-47D5-9A89-7633117DBAAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD937A05-FC26-47D5-9A89-7633117DBAAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD937A05-FC26-47D5-9A89-7633117DBAAB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
