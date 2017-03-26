@@ -30,6 +30,7 @@ namespace libQCLISP
 
 			for(;state.position<state.data.Length;state.position++)
 			{
+				int sign = 1;
 				switch (state.data [state.position]) {
 				case '(':
 					var n = resolve_parenthesis (ref state);
@@ -48,9 +49,24 @@ namespace libQCLISP
 				case '8':
 				case '9':
 				case '.':
-					ILispValue symn = resolve_numeric (ref state);
-					state.root.Add (symn);
-					state.position--;
+				case '-':
+					if (
+						Char.IsDigit (state.data [state.position])
+						|| state.data [state.position] == '.'
+						|| (
+						    Char.IsDigit (state.data [state.position + 1])
+						    && state.data [state.position] == '-'
+						)) {
+						if (state.data [state.position] == '-') {
+							sign = -1;
+							state.position++;
+						}
+						ILispValue symn = resolve_numeric (ref state, sign);
+						state.root.Add (symn);
+						state.position--;
+					} else {
+						goto default;
+					}
 					break;
 				case '"':
 					ILispValue symst = new LispString(resolve_string (ref state));
@@ -152,7 +168,7 @@ namespace libQCLISP
 
 
 
-		ILispValue resolve_numeric(ref ParserState state)
+		ILispValue resolve_numeric(ref ParserState state,double coef)
 		{
 			BigInteger ret = 0;
 			int exp=0;
@@ -254,9 +270,9 @@ namespace libQCLISP
 				state.position++;
 			}
 			if (isInt)
-				return new LispInteger (ret);
+				return new LispInteger ((int)coef*ret*(new BigInteger(Math.Pow(10,exp))));
 			else
-				return new LispFloating ((double)ret/Math.Pow(10,exp));
+				return new LispFloating (coef*(double)ret/Math.Pow(10,exp));
 		}
 	}
 }
