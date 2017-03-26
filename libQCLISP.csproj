@@ -58,9 +58,11 @@
     <Compile Include="Natives\LispIf.cs" />
     <Compile Include="Natives\LispGet.cs" />
     <Compile Include="Natives\LispSet.cs" />
+    <Compile Include="Natives\BoundsLib\LispBoundValue.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Natives\" />
+    <Folder Include="Natives\BoundsLib\" />
   </ItemGroup>
 </Project>

@@ -8,7 +8,10 @@ namespace libQCLISP.qclisp
 		{
 			LispContext ctx = new LispContext ();
 			ctx.register ("+", new LispAdd ());
+			ctx.register ("get", new LispGet (ref ctx));
+			ctx.register ("set", new LispSet (ref ctx));
 			ctx.register ("range", new LispRange ());
+			ctx.register ("store", new LispBoundValue (new LispFloating (0.001)));
 
 			while (true) {
 				Console.Write ("> ");

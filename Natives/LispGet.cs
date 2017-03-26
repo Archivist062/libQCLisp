@@ -17,7 +17,7 @@ namespace libQCLISP
 		}
 		public string getString()
 		{
-			return "set";
+			return "get";
 		}
 		public BigInteger getInteger()
 		{
@@ -50,7 +50,7 @@ namespace libQCLISP
 
 		public ILispValue eval()
 		{
-			return new LispString ("head");
+			return new LispString ("get");
 		}
 	}
 	}
