@@ -4,6 +4,9 @@ using System.Collections.Generic;
 
 namespace libQCLISP
 {
+	/// <summary>
+	/// Lisp add operand, add this with '+' in your interpreter to perform additions
+	/// </summary>
 	public class LispAdd : ILispNative
 	{
 		public LispAdd ()

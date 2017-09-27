@@ -1,1 +1,21 @@
-﻿<Properties StartupItem="qclisp/qclisp.csproj" />
+﻿<Properties StartupItem="qclisp/qclisp.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="LispParser.cs">
+    <Files>
+      <File FileName="LispParser.cs" Line="93" Column="29" />
+      <File FileName="Natives/LispSet.cs" Line="1" Column="1" />
+      <File FileName="qclisp/Program.cs" Line="1" Column="1" />
+      <File FileName="LispString.cs" Line="1" Column="1" />
+      <File FileName="LispTokenizer.cs" Line="1" Column="1" />
+      <File FileName="ILispValue.cs" Line="1" Column="1" />
+      <File FileName="Natives/LispIf.cs" Line="1" Column="1" />
+      <File FileName="LispArray.cs" Line="1" Column="1" />
+      <File FileName="LispContext.cs" Line="1" Column="1" />
+      <File FileName="Natives/BoundsLib/LispBoundValue.cs" Line="1" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

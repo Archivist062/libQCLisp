@@ -55,7 +55,7 @@ namespace libQCLISP
 
 		public ILispValue eval()
 		{
-			return new LispString ("===");
+			return new LispString ("if");
 		}
 	}
 }

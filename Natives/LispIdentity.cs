@@ -4,9 +4,9 @@ using System.Collections.Generic;
 
 namespace libQCLISP
 {
-	public class LispEquals : ILispNative
+	public class LispIdentity : ILispNative
 	{
-		public LispEquals ()
+		public LispIdentity ()
 		{
 		}
 
@@ -16,7 +16,7 @@ namespace libQCLISP
 		}
 		public string getString()
 		{
-			return "==";
+			return "===";
 		}
 		public BigInteger getInteger()
 		{
@@ -49,19 +49,19 @@ namespace libQCLISP
 				for (int idx = 1; idx < max_it; idx++)
 					tmp.Add (array [idx].eval ());
 			
-				if (tmp [0].getString() == tmp[1].getString())
+				if (tmp [0].getType() == tmp[1].getType() && tmp [0].getString() == tmp[1].getString())
 				{
 					ret = new LispBoolean (true);
 				}
 				return ret;
 			}
 			else
-				return new LispString("ERROR : == require exactly 2 operands");
+				return new LispString("ERROR : === require exactly 2 operands");
 		}
 
 		public ILispValue eval()
 		{
-			return new LispString ("==");
+			return new LispString ("===");
 		}
 	}
 }

@@ -1,7 +1,0 @@
-/home/lubuntu/Documents/libQCLisp/qclisp/obj/Debug/.NETFramework,Version=v4.5.AssemblyAttribute.cs
-/home/lubuntu/Documents/libQCLisp/qclisp/bin/Debug/qclisp.exe.mdb
-/home/lubuntu/Documents/libQCLisp/qclisp/bin/Debug/qclisp.exe
-/home/lubuntu/Documents/libQCLisp/qclisp/obj/Debug/qclisp.exe
-/home/lubuntu/Documents/libQCLisp/qclisp/obj/Debug/qclisp.exe.mdb
-/home/lubuntu/Documents/libQCLisp/qclisp/bin/Debug/libQCLISP.dll
-/home/lubuntu/Documents/libQCLisp/qclisp/bin/Debug/libQCLISP.dll.mdb

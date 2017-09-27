@@ -3,6 +3,9 @@ using System.Numerics;
 
 namespace libQCLISP
 {
+	/// <summary>
+	/// Interface for defining new Lisp Types (not necessarily parsable)
+	/// </summary>
 	public interface ILispValue
 	{
 		ELispType getType();

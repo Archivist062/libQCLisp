@@ -6,17 +6,28 @@ namespace libQCLISP
 {
 	public class LispParser
 	{
+		/// <summary>
+		/// Parser state containing the current parsing status of the code
+		/// </summary>
 		public class ParserState{
 			public string data;
 			public int position;
 			public List<ILispValue> root;
 		}
 
+		/// <summary>
+		/// Initializes a new instance of the <see cref="libQCLISP.LispParser"/> class.
+		/// </summary>
 		public LispParser ()
 		{
 		}
 
-
+		/// <summary>
+		/// Parse the specified code using a specified registry and bank.
+		/// </summary>
+		/// <param name="data">The code to parse</param>
+		/// <param name="registry">Registry of the context</param>
+		/// <param name="bank">Bank of the context</param>
 		public ILispValue parse(string data,Dictionary<string,ILispNative> registry,Dictionary<string,ILispValue> bank)
 		{
 			ParserState state = new ParserState();
@@ -89,6 +100,11 @@ namespace libQCLISP
 			return new LispArray(state.root);
 		}
 
+		/// <summary>
+		/// Resolves the symbol as a string
+		/// </summary>
+		/// <returns>The symbol as a system string</returns>
+		/// <param name="state">State pointed on the first character of the symbol</param>
 		string resolve_symbol(ref ParserState state)
 		{
 			HashSet<char> lws = new HashSet<char>();
@@ -110,6 +126,11 @@ namespace libQCLISP
 			return ret;
 		}
 
+		/// <summary>
+		/// Resolves the string and all its escape sequences
+		/// </summary>
+		/// <returns>The string as system string</returns>
+		/// <param name="state">State pointing to an opening '"'</param>
 		string resolve_string(ref ParserState state)
 		{
 			string ret = "";
@@ -134,6 +155,9 @@ namespace libQCLISP
 					case '"':
 						ret += '"';
 						break;
+					case '\n':
+						ret += '\n';
+						break;
 					default:
 						ret += state.data [state.position];
 						break;
@@ -147,9 +171,18 @@ namespace libQCLISP
 			return ret;
 		}
 
+		/// <summary>
+		/// Integer range
+		/// </summary>
 		struct Range{
 			public int beg,end;
 		}
+
+		/// <summary>
+		/// Resolves the two parenthesis that match from the state
+		/// </summary>
+		/// <returns>The parenthesis range as a Range</returns>
+		/// <param name="state">State pointed to an open parenthesis</param>
 		Range resolve_parenthesis(ref ParserState state)
 		{
 			Range r;
@@ -167,7 +200,12 @@ namespace libQCLISP
 		}
 
 
-
+		/// <summary>
+		/// Resolves the next numeric in the parser state and update the Parser.
+		/// </summary>
+		/// <returns>The numeric as a LispValue</returns>
+		/// <param name="state">State from which parsing is started</param>
+		/// <param name="coef">Coef of multiplication, most of the time used to define the sign</param>
 		ILispValue resolve_numeric(ref ParserState state,double coef)
 		{
 			BigInteger ret = 0;
