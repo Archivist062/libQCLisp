@@ -1,5 +1,0 @@
-/home/lubuntu/Documents/libQCLisp/obj/Debug/.NETFramework,Version=v4.5.AssemblyAttribute.cs
-/home/lubuntu/Documents/libQCLisp/bin/Debug/libQCLISP.dll.mdb
-/home/lubuntu/Documents/libQCLisp/bin/Debug/libQCLISP.dll
-/home/lubuntu/Documents/libQCLisp/obj/Debug/libQCLISP.dll
-/home/lubuntu/Documents/libQCLisp/obj/Debug/libQCLISP.dll.mdb

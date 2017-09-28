@@ -42,11 +42,20 @@ namespace libQCLISP
 			for(;state.position<state.data.Length;state.position++)
 			{
 				int sign = 1;
+				bool no_eval;
 				switch (state.data [state.position]) {
+				case '\'':
 				case '(':
+					if (state.data [state.position] == '\'') {
+						no_eval = true;
+						state.position++;
+					} else
+						no_eval = false;
 					var n = resolve_parenthesis (ref state);
-					string child = state.data.Substring (n.beg +1, n.end - n.beg-1);
-					state.root.Add(parse(child,registry,bank));
+					string child = state.data.Substring (n.beg + 1, n.end - n.beg - 1);
+					LispArray tmp_insertee = (LispArray)parse (child, registry, bank);
+					tmp_insertee.force_eval = no_eval;
+					state.root.Add(tmp_insertee);
 					state.position--;
 					break;
 				case '0':

@@ -45,7 +45,7 @@ namespace libQCLISP
 		public ILispValue execute(LispArray array)
 		{
 			int max_it = array.getSize ();
-			List<ILispValue> tmp = new List<ILispValue> ();;
+			List<ILispValue> tmp = new List<ILispValue> ();
 			ILispValue ret;
 			if(array.getSize()>1)
 			{
@@ -56,23 +56,6 @@ namespace libQCLISP
 					for (int idx = 0; idx < tmp.Count; idx++)
 						a += tmp [idx].getFloating ();
 					ret = new LispFloating (a);
-				} else if (tmp [0].getType () == ELispType.LispValue && tmp.Count == 1) {
-					List<ILispValue> tmp2 = new List<ILispValue> ();
-					for (int idx = 0; idx < ((LispArray)tmp[0]).getSize(); idx++)
-						tmp2.Add (((LispArray)tmp[0])[idx].eval ());
-					if (tmp2 [0].getType () == ELispType.Floating) {
-						double a = 0;
-
-						for (int idx = 0; idx < tmp2.Count; idx++)
-							a += tmp2 [idx].getFloating ();
-						ret = new LispFloating (a);
-					} else {
-						BigInteger a=0;
-
-						for (int idx = 0; idx < tmp2.Count; idx++)
-							a += tmp2 [idx].getInteger ();
-						ret = new LispInteger (a);
-					}
 				}else{
 					BigInteger a=0;
 					for (int idx = 0; idx < tmp.Count; idx++)
