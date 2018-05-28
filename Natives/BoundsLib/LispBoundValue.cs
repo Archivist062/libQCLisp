@@ -44,7 +44,7 @@ namespace libQCLISP
 
 		public ILispValue eval()
 		{
-			return value;
+			return value.eval ();
 		}
 
 

@@ -1,15 +1,13 @@
 ﻿using System;
 using System.Numerics;
 
-
 namespace libQCLISP
 {
-	public class LispSet : ILispNative
+	public class LispOr : ILispNative
 	{
-		LispContext ctx;
-		public LispSet (ref LispContext ctx)
+
+		public LispOr ()
 		{
-			this.ctx = ctx;
 		}
 
 		public ELispType getType()
@@ -18,15 +16,15 @@ namespace libQCLISP
 		}
 		public string getString()
 		{
-			return "set";
+			return "||";
 		}
 		public BigInteger getInteger()
 		{
-			return 0;
+			return 1;
 		}
 		public double getFloating()
 		{
-			return 0.0;
+			return 1.0;
 		}
 		public bool getBoolean()
 		{
@@ -34,7 +32,7 @@ namespace libQCLISP
 		}
 		public char getCharacter()
 		{
-			return '=';
+			return 'o';
 		}
 		public T getN<T> ()
 		{
@@ -43,10 +41,12 @@ namespace libQCLISP
 
 		public ILispValue execute(LispArray array)
 		{
-			if (array [1].getType() == ELispType.String && array.getSize()==3) {
-				return  ctx.bank [array [1].eval ().getString ()] = array [2].eval ();
-			} else
-				return new LispBoolean (false);
+			int max_it = array.getSize ();
+			for (int idx = 1; idx < max_it; idx++)
+				if(array [idx].eval ().getBoolean())
+					return new LispBoolean (true);
+
+			return new LispBoolean(false);
 		}
 
 		public ILispValue eval()
@@ -55,5 +55,4 @@ namespace libQCLISP
 		}
 	}
 }
-
 

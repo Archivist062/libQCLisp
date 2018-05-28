@@ -35,10 +35,6 @@ namespace libQCLISP
 			state.data = data + " ";
 			state.root = new List<ILispValue>();
 
-			//Console.WriteLine( n.ToString() +":" +data);
-
-			//n++;
-
 			for(;state.position<state.data.Length;state.position++)
 			{
 				int sign = 1;
@@ -54,7 +50,7 @@ namespace libQCLISP
 					var n = resolve_parenthesis (ref state);
 					string child = state.data.Substring (n.beg + 1, n.end - n.beg - 1);
 					LispArray tmp_insertee = (LispArray)parse (child, registry, bank);
-					tmp_insertee.force_eval = no_eval;
+					tmp_insertee.force_eval = !no_eval;
 					state.root.Add(tmp_insertee);
 					state.position--;
 					break;

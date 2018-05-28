@@ -7,9 +7,9 @@ namespace libQCLISP
 	/// <summary>
 	/// Lisp add operand, add this with '+' in your interpreter to perform additions
 	/// </summary>
-	public class LispAdd : ILispNative
+	public class LispSubstract : ILispNative
 	{
-		public LispAdd ()
+		public LispSubstract ()
 		{
 		}
 
@@ -19,15 +19,15 @@ namespace libQCLISP
 		}
 		public string getString()
 		{
-			return "+";
+			return "-";
 		}
 		public BigInteger getInteger()
 		{
-			return 0;
+			return 1;
 		}
 		public double getFloating()
 		{
-			return 0.0;
+			return 1.0;
 		}
 		public bool getBoolean()
 		{
@@ -35,7 +35,7 @@ namespace libQCLISP
 		}
 		public char getCharacter()
 		{
-			return 'a';
+			return 's';
 		}
 		public T getN<T> ()
 		{
@@ -52,20 +52,24 @@ namespace libQCLISP
 				for (int idx = 1; idx < max_it; idx++)
 					tmp.Add (array [idx].eval ());
 				if (tmp [0].getType () == ELispType.Floating) {
-					double a = 0;
-					for (int idx = 0; idx < tmp.Count; idx++)
-						a += tmp [idx].getFloating ();
+					if (tmp.Count == 1)
+						return new LispFloating (-tmp [0].getFloating ());
+					double a = tmp [0].getFloating();
+					for (int idx = 1; idx < tmp.Count; idx++)
+						a -= tmp [idx].getFloating ();
 					ret = new LispFloating (a);
 				}else{
-					BigInteger a=0;
-					for (int idx = 0; idx < tmp.Count; idx++)
-						a += tmp [idx].getInteger ();
+					if (tmp.Count == 1)
+						return new LispInteger (-tmp [0].getInteger ());
+					BigInteger a= tmp [0].getInteger();
+					for (int idx = 1; idx < tmp.Count; idx++)
+						a -= tmp [idx].getInteger ();
 					ret = new LispInteger (a);
 				}
 				return ret;
 			}
 			else
-				return new LispString("ERROR : + require at least one operand");
+				return new LispString("ERROR : - require at least one operand");
 		}
 
 		public ILispValue eval()

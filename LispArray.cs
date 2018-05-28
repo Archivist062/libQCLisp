@@ -7,7 +7,7 @@ namespace libQCLISP
 	public class LispArray : ILispValue
 	{
 		public List<ILispValue> value;
-		public bool force_eval=false;
+		public bool force_eval=true;
 
 		public LispArray (List<ILispValue> value)
 		{
@@ -71,8 +71,21 @@ namespace libQCLISP
 
 			if (value.Count == 0)
 				return new LispArray(new List<ILispValue>());
-			if (!force_eval)
-				return ((ILispNative)value[0]).execute(this);
+			if (force_eval) {
+				if(value [0].getType()==ELispType.Native)
+					return ((ILispNative)value [0]).execute (this);
+				if (value [0].getType () == ELispType.LispValue) {
+					var first = value [0].eval ();
+					if (first.getType() != ELispType.Native) {
+						LispArray ret = new LispArray (new List<ILispValue>(value.Count));
+						ret.value.Add (first);
+						for(int i=1;i<value.Count;i++)
+							ret.value.Add(value [i].eval ());
+						return ret;
+					}else
+						return ((ILispNative)first).execute (this);
+				}
+			}
 			return this;
 		}
 
@@ -91,9 +104,6 @@ namespace libQCLISP
 		{
 			return value;
 		}
-
-
-
 	}
 }
 

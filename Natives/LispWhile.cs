@@ -1,15 +1,13 @@
 ﻿using System;
 using System.Numerics;
-
+using System.Collections.Generic;
 
 namespace libQCLISP
 {
-	public class LispSet : ILispNative
+	public class LispWhile : ILispNative
 	{
-		LispContext ctx;
-		public LispSet (ref LispContext ctx)
+		public LispWhile ()
 		{
-			this.ctx = ctx;
 		}
 
 		public ELispType getType()
@@ -18,15 +16,15 @@ namespace libQCLISP
 		}
 		public string getString()
 		{
-			return "set";
+			return "while";
 		}
 		public BigInteger getInteger()
 		{
-			return 0;
+			return 1;
 		}
 		public double getFloating()
 		{
-			return 0.0;
+			return 1.0;
 		}
 		public bool getBoolean()
 		{
@@ -34,7 +32,7 @@ namespace libQCLISP
 		}
 		public char getCharacter()
 		{
-			return '=';
+			return 'w';
 		}
 		public T getN<T> ()
 		{
@@ -43,10 +41,14 @@ namespace libQCLISP
 
 		public ILispValue execute(LispArray array)
 		{
-			if (array [1].getType() == ELispType.String && array.getSize()==3) {
-				return  ctx.bank [array [1].eval ().getString ()] = array [2].eval ();
-			} else
-				return new LispBoolean (false);
+			if(array.getSize()==3)
+			{
+				while (array [1].eval ().getBoolean ())
+					array [2].eval ();
+				return new LispBoolean (true);
+			}
+			else
+				return new LispString("ERROR : (while cond block) enforced");
 		}
 
 		public ILispValue eval()
@@ -55,5 +57,4 @@ namespace libQCLISP
 		}
 	}
 }
-
 

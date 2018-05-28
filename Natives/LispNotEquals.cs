@@ -4,9 +4,9 @@ using System.Collections.Generic;
 
 namespace libQCLISP
 {
-	public class LispIf : ILispNative
+	public class LispNotEquals : ILispNative
 	{
-		public LispIf ()
+		public LispNotEquals ()
 		{
 		}
 
@@ -16,15 +16,15 @@ namespace libQCLISP
 		}
 		public string getString()
 		{
-			return "if";
+			return "!=";
 		}
 		public BigInteger getInteger()
 		{
-			return 0;
+			return 1;
 		}
 		public double getFloating()
 		{
-			return 0.0;
+			return 1.0;
 		}
 		public bool getBoolean()
 		{
@@ -32,7 +32,7 @@ namespace libQCLISP
 		}
 		public char getCharacter()
 		{
-			return '?';
+			return 'm';
 		}
 		public T getN<T> ()
 		{
@@ -41,16 +41,22 @@ namespace libQCLISP
 
 		public ILispValue execute(LispArray array)
 		{
-			if(array.getSize()==4 || array.getSize()==3)
+			int max_it = array.getSize ();
+			List<ILispValue> tmp = new List<ILispValue> ();
+			ILispValue ret= new LispBoolean(false);
+			if(array.getSize()==3)
 			{
-				if (array [1].eval ().getBoolean ())
-					return array [2].eval ();
-				else
-					return array [3].eval ();
-					
+				for (int idx = 1; idx < max_it; idx++)
+					tmp.Add (array [idx].eval ());
+			
+				if (tmp [0].getString() != tmp[1].getString())
+				{
+					ret = new LispBoolean (true);
+				}
+				return ret;
 			}
 			else
-				return new LispString("ERROR : (if cond then) or (if cond then else) enforced");
+				return new LispString("ERROR : != require exactly 2 operands");
 		}
 
 		public ILispValue eval()

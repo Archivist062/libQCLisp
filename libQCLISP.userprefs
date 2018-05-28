@@ -1,8 +1,8 @@
 ﻿<Properties StartupItem="qclisp/qclisp.csproj">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
   <MonoDevelop.Ide.Workbench ActiveDocument="LispParser.cs">
     <Files>
-      <File FileName="LispParser.cs" Line="93" Column="29" />
+      <File FileName="LispParser.cs" Line="88" Column="20" />
       <File FileName="Natives/LispSet.cs" Line="1" Column="1" />
       <File FileName="qclisp/Program.cs" Line="1" Column="1" />
       <File FileName="LispString.cs" Line="1" Column="1" />

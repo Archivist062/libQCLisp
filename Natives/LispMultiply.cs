@@ -84,7 +84,7 @@ namespace libQCLISP
 
 		public ILispValue eval()
 		{
-			return new LispCharacter ('+');
+			return this;
 		}
 	}
 }

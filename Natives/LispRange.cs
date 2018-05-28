@@ -68,7 +68,7 @@ namespace libQCLISP
 
 		public ILispValue eval()
 		{
-			return new LispString ("range");
+			return this;
 		}
 	}
 }

@@ -8,8 +8,6 @@
     <RootNamespace>libQCLISP</RootNamespace>
     <AssemblyName>libQCLISP</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <ProductVersion>8.0.30703</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -58,6 +56,10 @@
     <Compile Include="Natives\BoundsLib\LispBoundValue.cs" />
     <Compile Include="Natives\LispIdentity.cs" />
     <Compile Include="Natives\LispEquals.cs" />
+    <Compile Include="Natives\LispSubstract.cs" />
+    <Compile Include="Natives\LispWhile.cs" />
+    <Compile Include="Natives\LispNotEquals.cs" />
+    <Compile Include="Natives\LispOr.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

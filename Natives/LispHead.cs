@@ -52,7 +52,7 @@ namespace libQCLISP
 
 		public ILispValue eval()
 		{
-					return new LispString ("head");
+			return this;
 		}
 	}
 }

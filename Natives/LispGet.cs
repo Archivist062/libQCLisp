@@ -50,7 +50,7 @@ namespace libQCLISP
 
 		public ILispValue eval()
 		{
-			return new LispString ("get");
+			return this;
 		}
 	}
 	}

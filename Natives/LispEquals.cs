@@ -43,25 +43,27 @@ namespace libQCLISP
 		{
 			int max_it = array.getSize ();
 			List<ILispValue> tmp = new List<ILispValue> ();
-			ILispValue ret= new LispBoolean(false);
-			if(array.getSize()==3)
+			ILispValue ret= new LispBoolean(true);
+			if(array.getSize()>=2)
 			{
 				for (int idx = 1; idx < max_it; idx++)
 					tmp.Add (array [idx].eval ());
-			
-				if (tmp [0].getString() == tmp[1].getString())
-				{
-					ret = new LispBoolean (true);
+
+				for (int idx = 0; idx < max_it - 2; idx++) {
+					if (tmp [idx].getString () != tmp [idx + 1].getString ()) {
+						ret = new LispBoolean (false);
+						break;
+					}
 				}
 				return ret;
 			}
 			else
-				return new LispString("ERROR : == require exactly 2 operands");
+				return new LispString("ERROR : == require at least 2 operands");
 		}
 
 		public ILispValue eval()
 		{
-			return new LispString ("==");
+			return this;
 		}
 	}
 }

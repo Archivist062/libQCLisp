@@ -32,7 +32,12 @@ namespace libQCLISP
 
 		public string getString()
 		{
-			return '"'+value+'"';
+			return '"'+value.Replace("\"","\\\"").Replace("\n","\\n")+'"';
+		}
+
+		public string getNativeString()
+		{
+			return value;
 		}
 
 		public double getFloating()
@@ -56,7 +61,7 @@ namespace libQCLISP
 		public  char getCharacter()
 		{
 			if(value.Length==0) return 'N';
-			return value[0];
+			return 'O';
 		}
 
 		public T getN<T>()
